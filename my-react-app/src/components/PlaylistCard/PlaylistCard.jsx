@@ -5,6 +5,7 @@ function PlaylistCard({ title, link }) {
 
       <a
         href={link}
+        target="_blank"
         className="
           /* Size & Shape */
           w-[300px] h-[60px] rounded-[40px] 
