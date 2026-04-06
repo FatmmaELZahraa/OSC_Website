@@ -1,5 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
 
+.font-sofia {
+  font-family: 'Sofia', cursive;
+}
 @theme {
   --color-dark-bg: #181818;
   --color-mid-bg: #232323;
