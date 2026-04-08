@@ -10,10 +10,7 @@ const [availableCommittees, setAvailableCommittees] = useState([]);
     phone: "",
     academic_year: "",
     college: "",
-    committee_1: "",
-    committee_2: "",
-    attendance_date: "",
-    attendance_date_2: "",
+
   });
     useEffect(() => {
     const fetchCommittees = async () => {
@@ -52,10 +49,6 @@ const [availableCommittees, setAvailableCommittees] = useState([]);
       phone,
       academic_year,
       college,
-      committee_1,
-      committee_2,
-      attendance_date,
-      attendance_date_2,
     } = formData;
   
     if (
@@ -65,8 +58,8 @@ const [availableCommittees, setAvailableCommittees] = useState([]);
       !confirmEmail ||
       !phone ||
       !academic_year ||
-      !college ||
-      !committee_1 
+      !college 
+     
     ) {
       setStatus({
         loading: false,
@@ -195,7 +188,7 @@ const [availableCommittees, setAvailableCommittees] = useState([]);
             <input
               type="text"
               placeholder="Full Name"
-               id="fullName"
+              id="fullName"
               name="name"
               value={formData.name}
               onChange={handleChange}
