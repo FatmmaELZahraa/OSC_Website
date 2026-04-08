@@ -63,8 +63,10 @@ const Playlists = () => {
 // </div>
 //     </div>
 //   );
+
  return (
     <div className="min-h-screen bg-[#181818] text-white font-serif p-8 md:p-16 relative overflow-hidden">
+        <Navbar />
       <div className="absolute right-[-19%] top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
         <img src="/Playlist.png" alt="decoration" className="w-[500px]" />
       </div>
