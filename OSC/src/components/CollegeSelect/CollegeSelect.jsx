@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
 
-const CustomSelect = ({ onSelect }) => {
+const CollegeSelect = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState("");
 
-    const handleSelect = (name) => {
-        setSelected(name);
+    const colleges = [
+        "Computer Science & AI",
+        "Engineering",
+        "Science",
+        "Commerce",
+        "Arts",
+        "Law",
+        "Other"
+    ];
+
+    const handleSelect = (college) => {
+        setSelected(college);
         setIsOpen(false);
         if (onSelect) {
-            onSelect(name);
+            onSelect(college);
         }
-    };
-
-    const committees = {
-        Technical: [
-            { id: "frontend", name: "Frontend" },
-            { id: "backend", name: "Backend" },
-            { id: "science-tech", name: "Science and Tech" },
-            { id: "linux", name: "Linux" },
-            { id: "game-dev", name: "Game Development" },
-            { id: "uiux", name: "UI/UX" },
-            { id: "flutter", name: "Flutter" },
-            { id: "blender", name: "Blender" },
-        ],
-        "Non-Technical": [
-            { id: "hr", name: "HR" },
-            { id: "pr", name: "PR" },
-        ]
     };
 
     return (
@@ -38,7 +31,7 @@ const CustomSelect = ({ onSelect }) => {
           ${isOpen ? 'border-[#FA9B46] ring-4 ring-[#FA9B46]/10' : 'border-[#FA9B46]/30'}`}
             >
                 <span className={selected ? "text-gray-700" : "text-gray-400"}>
-                    {selected ? selected : "Select Committee"}
+                    {selected ? selected : "Select College"}
                 </span>
                 <svg
                     className={`fill-current h-4 w-4 text-[#FA9B46] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -52,22 +45,14 @@ const CustomSelect = ({ onSelect }) => {
             {/* Dropdown Menu */}
             {isOpen && (
                 <div className="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-md border-2 border-[#FA9B46]/20 rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
-                    {/* Scrollable Area - هنا بنحدد الطول الأقصى والسكرول */}
                     <div className="max-h-60 overflow-y-auto custom-scrollbar">
-                        {Object.entries(committees).map(([group, items]) => (
-                            <div key={group}>
-                                <div className="px-5 py-2 text-xs font-bold text-[#FA9B46] bg-[#FFF8E7]/50 uppercase tracking-wider">
-                                    {group}
-                                </div>
-                                {items.map((item) => (
-                                    <div
-                                        key={item.id}
-                                        onClick={() => handleSelect(item.name)}
-                                        className="px-5 py-2.5 hover:bg-[#FA9B46]/10 cursor-pointer text-gray-700 transition-colors duration-150 first:pt-3"
-                                    >
-                                        {item.name}
-                                    </div>
-                                ))}
+                        {colleges.map((college, index) => (
+                            <div
+                                key={index}
+                                onClick={() => handleSelect(college)}
+                                className="px-5 py-2.5 hover:bg-[#FA9B46]/10 cursor-pointer text-gray-700 transition-colors duration-150 first:pt-3"
+                            >
+                                {college}
                             </div>
                         ))}
                     </div>
@@ -75,7 +60,7 @@ const CustomSelect = ({ onSelect }) => {
             )}
 
             {/* Hidden Input for Form Submission */}
-            <input type="hidden" name="committee" value={selected} />
+            <input type="hidden" name="college" value={selected} />
 
             {/* CSS For Scrollbar Appearance */}
             <style jsx>{`
@@ -94,4 +79,4 @@ const CustomSelect = ({ onSelect }) => {
     );
 };
 
-export default CustomSelect;
+export default CollegeSelect;
