@@ -39,15 +39,15 @@ const Events = () => {
     //   targetDate: "2026-07-10T09:00:00"
     // },
     {
-      title: "salakhana",
+      title: "Salakhana",
       date: "Sunday 12/4/2026",
-      time: "--:--",
-      location: "",
+      time: "9:00 AM",
+      location: "Genedy ",
       description: "Something big is cooking! Keep an eye on our social media for the big reveal.",
       targetDate: null
     },
     {
-      title: "recruitment",
+      title: "Recruitment",
       date: "Stay Tuned",
       time: "--:--",
       location: "",
@@ -55,7 +55,7 @@ const Events = () => {
       targetDate: null
     },
     {
-      title: "summer training",
+      title: "Summer training",
       date: "Stay Tuned",
       time: "--:--",
       location: "",
@@ -93,7 +93,7 @@ const Events = () => {
 
   return (
     /* التعديل: أضفنا flex و flex-col و min-h-screen */
-    <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans selection:bg-osc-orange selection:text-dark-bg">
+    <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans my-10 selection:bg-osc-orange selection:text-dark-bg">
       <Navbar />
 
       {/* التعديل: أضفنا flex-grow لضمان تمدد المحتوى ودفع الفوتر للأسفل */}
