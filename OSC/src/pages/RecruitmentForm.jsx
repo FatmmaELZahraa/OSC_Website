@@ -117,29 +117,8 @@ const RecruitmentForm = () => {
           <CustomSelect onSelect={(val) => setFormData(prev => ({ ...prev, committee: val }))} />
 
           {/* College Info */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <CollegeSelect onSelect={(val) => setFormData(prev => ({ ...prev, college: val }))} />
-            <input
-              name="college_id"
-              type="text"
-              placeholder="College ID"
-              onChange={handleChange}
-              value={formData.college_id}
-              required
-              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
-            />
-          </div> */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <select
-              name="college"
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 text-gray-700 transition-all duration-200 shadow-sm"
-            >
-              <option value="">Select College</option>
-              <option value="computer science">Computer Science</option>
-              <option value="other">Other</option>
-            </select>
             <input
               name="college_id"
               type="text"
