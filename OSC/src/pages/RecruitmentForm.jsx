@@ -12,6 +12,7 @@ const RecruitmentForm = () => {
     phone: '',
     college: '',
     college_id: '',
+    committee: '',
   });
 
   const handleChange = (e) => {
@@ -34,6 +35,7 @@ const RecruitmentForm = () => {
       phone: formData.phone,
       college: formData.college.toLowerCase(), 
       college_id: formData.college_id,
+  committee: formData.committee.toLowerCase(),
     };
 
     try {
@@ -108,7 +110,9 @@ const RecruitmentForm = () => {
             />
           </div>
 
-          <CustomSelect />
+      <CustomSelect 
+      onSelect={(val) => setFormData(prev => ({ ...prev, committee: val }))} 
+    />
 
           {/* Academic Year */}
                 <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
