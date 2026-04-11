@@ -5,12 +5,7 @@ const CollegeSelect = ({ onSelect }) => {
     const [selected, setSelected] = useState("");
 
     const colleges = [
-        "Computer Science & AI",
-        "Engineering",
-        "Science",
-        "Commerce",
-        "Arts",
-        "Law",
+        "Computer Science",
         "Other"
     ];
 
