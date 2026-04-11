@@ -20,19 +20,17 @@ const RecruitmentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // 1. التحقق من تطابق الإيميل في الفرونت إند
     if (formData.email !== formData.confirmEmail) {
       alert("البريد الإلكتروني غير متطابق!");
       return;
     }
 
-    // 2. تجهيز البيانات لتطابق الـ CreateFormDto تماماً
     const dataToSend = {
       name: formData.name,
       email: formData.email,
-      academic_year: Number(formData.academic_year), // تحويل لرقم
+      academic_year: Number(formData.academic_year), 
       phone: formData.phone,
-      college: formData.college.toLowerCase(), // تحويل لـ lowercase ليطابق الـ Enum
+      college: formData.college.toLowerCase(), 
       college_id: formData.college_id,
     };
 
@@ -49,10 +47,8 @@ const RecruitmentForm = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert("تم التقديم بنجاح!");
-        // اختياري: تفريغ النموذج بعد النجاح
+        alert("Application submitted successfully!");
       } else {
-        // عرض أخطاء الـ Validation من الباك إند
         const errorMessage = Array.isArray(result.message) 
           ? result.message.join("\n") 
           : result.message;
@@ -60,7 +56,7 @@ const RecruitmentForm = () => {
       }
     } catch (error) {
       console.error("Error submitting:", error);
-      alert("فشل الاتصال بالسيرفر. تأكد من تفعيل CORS في الباك إند.");
+      alert("Failed to submit. Please try again later.");
     }
   };
 
@@ -110,7 +106,6 @@ const RecruitmentForm = () => {
             />
           </div>
 
-          {/* Committee Select (تأكدي من تمرير القيمة لـ formData إذا كان الحقل مطلوباً في الباك) */}
           <CustomSelect />
 
           {/* Academic Year */}
