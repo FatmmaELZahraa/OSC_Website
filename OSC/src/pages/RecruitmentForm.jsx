@@ -109,8 +109,8 @@ const RecruitmentForm = () => {
           <CustomSelect />
 
           {/* Academic Year */}
-          <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
-            <label className="text-md font-bold text-[#333] block">Academic Year</label>
+                <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
+            <label className="text-md font-bold text-[#333] block text-left">Academic Year</label>
             <div className="flex flex-wrap gap-4">
               {[1, 2, 3, 4].map((year) => (
                 <label key={year} className="flex items-center gap-2 cursor-pointer text-gray-700 group">
