@@ -14,69 +14,88 @@ const Events = () => {
   };
 
   const upcomingEvents = [
+    // {
+    //   title: "Workshops",
+    //   date: "May 15, 2026",
+    //   time: "10:00 AM",
+    //   location: "FCIS Hall A",
+    //   description: "Hands-on session on advanced React patterns and performance optimization using Tailwind CSS 4 and Vite.",
+    //   targetDate: "2026-05-15T10:00:00"
+    // },
+    // {
+    //   title: "Webinars",
+    //   date: "June 02, 2026",
+    //   time: "08:00 PM",
+    //   location: "Zoom Online",
+    //   description: "Exploring the future of Open Source with industry veterans and community leaders worldwide.",
+    //   targetDate: "2026-06-02T20:00:00"
+    // },
+    // {
+    //   title: "Hackathons",
+    //   date: "July 10, 2026",
+    //   time: "09:00 AM",
+    //   location: "Tech Hub Cairo",
+    //   description: "24-hour coding challenge to build innovative community solutions and win amazing prizes.",
+    //   targetDate: "2026-07-10T09:00:00"
+    // },
     {
-      title: "Workshops",
-      date: "May 15, 2026",
-      time: "10:00 AM",
-      location: "FCIS Hall A",
-      description: "Hands-on session on advanced React patterns and performance optimization using Tailwind CSS 4 and Vite.",
-      targetDate: "2026-05-15T10:00:00"
-    },
-    {
-      title: "Webinars",
-      date: "June 02, 2026",
-      time: "08:00 PM",
-      location: "Zoom Online",
-      description: "Exploring the future of Open Source with industry veterans and community leaders worldwide.",
-      targetDate: "2026-06-02T20:00:00"
-    },
-    {
-      title: "Hackathons",
-      date: "July 10, 2026",
-      time: "09:00 AM",
-      location: "Tech Hub Cairo",
-      description: "24-hour coding challenge to build innovative community solutions and win amazing prizes.",
-      targetDate: "2026-07-10T09:00:00"
-    },
-    {
-      title: "Coming Soon",
-      date: "Stay Tuned",
-      time: "--:--",
-      location: "TBA",
+      title: "Salakhana",
+      date: "Sunday 12/4/2026",
+      time: "9:00 AM",
+      location: "Genedy ",
       description: "Something big is cooking! Keep an eye on our social media for the big reveal.",
       targetDate: null
-    }
+    },
+    {
+      title: "Recruitment",
+      date: "Stay Tuned",
+      time: "--:--",
+      location: "",
+      description: "Something big is cooking! Keep an eye on our social media for the big reveal.",
+      targetDate: null
+    },
+    {
+      title: "Summer training",
+      date: "Stay Tuned",
+      time: "--:--",
+      location: "",
+      description: "Something big is cooking! Keep an eye on our social media for the big reveal.",
+      targetDate: null
+    },
   ];
 
   const finishedEvents = [
     {
-      title: "UI/UX Bootcamp",
-      date: "March 10, 2026",
-      time: "02:00 PM",
-      location: "Design Lab",
-      description: "Mastering the fundamentals of user-centric design, typography, and interactive prototyping."
+      title: "Blender Workshop",
+      date: "January 25, 2026",
+      time: "9:00 AM",
+      location: "Fahmy Tolba Building",
+      description: "The first official step into the world of Blender and 3D Modeling. This session starts from scratch, teaching the basics of the software and how to transform ideas into visible 3D reality.",
+      targetDate: "2026-01-25T09:00:00"
     },
     {
-      title: "Linux Essentials",
-      date: "Feb 20, 2026",
-      time: "11:00 AM",
-      location: "Labs 3 & 4",
-      description: "Getting started with command-line mastery, bash scripting, and basic system administration."
+      "title": "Get to Git ’26",
+      "date": "November 17, 2025",
+      "time": "4:00 PM",
+      "location": "Class 8",
+      "description": "An introductory session to Git and GitHub secrets. Learn how to work organized within a team, sync modifications easily, version control your work to return to any previous state, and become a part of the Open Source world. Attendees are encouraged to bring their laptops.",
+      "targetDate": "2025-11-17T16:00:00"
     },
     {
-      title: "Flutter Kickoff",
-      date: "Jan 15, 2026",
-      time: "10:00 AM",
-      location: "Online",
-      description: "Building cross-platform mobile apps from scratch with Google's UI toolkit."
+      title: "LDP",
+      date: "April 5, 2026",
+      time: "9:00 AM",
+      location: "Genedy Hall",
+      description: "An introductory session to Linux fundamentals where you can ask, discuss, and start your journey. The session focuses on understanding Linux as a developer, not just a user, emphasizing the freedom of the OS. No registration or prior preparation required.",
+      targetDate: "2026-04-05T09:00:00"
     }
   ];
 
   return (
     /* التعديل: أضفنا flex و flex-col و min-h-screen */
-    <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans selection:bg-osc-orange selection:text-dark-bg">
+    <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans my-10 selection:bg-osc-orange selection:text-dark-bg">
       <Navbar />
-      
+
       {/* التعديل: أضفنا flex-grow لضمان تمدد المحتوى ودفع الفوتر للأسفل */}
       <div className="flex-grow w-full max-w-6xl mx-auto px-6 md:px-12 py-10 space-y-12 mt-10">
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomSelect from '../components/ComitteeSelect/ComitteeSelect';
+import CollegeSelect from '../components/CollegeSelect/CollegeSelect';
 
 
 const RecruitmentForm = () => {
@@ -12,16 +13,17 @@ const RecruitmentForm = () => {
     phone: '',
     college: '',
     college_id: '',
+    committee: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.email !== formData.confirmEmail) {
       alert("Emails do not match!");
       return;
@@ -30,16 +32,17 @@ const navigate = useNavigate();
     const dataToSend = {
       name: formData.name,
       email: formData.email,
-      academic_year: Number(formData.academic_year), 
+      academic_year: Number(formData.academic_year),
       phone: formData.phone,
-      college: formData.college.toLowerCase(), 
+      college: formData.college.toLowerCase(),
       college_id: formData.college_id,
+      committee: formData.committee,
     };
 
     try {
       const response = await fetch('https://osc-recruit-form.vercel.app/form', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
@@ -52,8 +55,8 @@ const navigate = useNavigate();
         alert("Application submitted successfully!");
         navigate("/")
       } else {
-        const errorMessage = Array.isArray(result.message) 
-          ? result.message.join("\n") 
+        const errorMessage = Array.isArray(result.message)
+          ? result.message.join("\n")
           : result.message;
         alert(`Error:\n${errorMessage}`);
       }
@@ -66,7 +69,7 @@ const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#FFF8E7] flex flex-col items-center justify-center py-2 px-4 font-sans text-right">
       <div className="w-full max-w-2xl bg-white/50 backdrop-blur-sm p-5 sm:p-8 rounded-[2rem] shadow-xl border border-[#FA9B46]/20">
-      
+
         <header className="mb-6 text-center sm:text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#333] tracking-tight">
             OSC <span className="text-[#F39148]">Recruitment</span>
@@ -110,12 +113,26 @@ const navigate = useNavigate();
             />
           </div>
 
-          {/* Committee Select (تأكدي من تمرير القيمة لـ formData إذا كان الحقل مطلوباً في الباك) */}
-          <CustomSelect />
+          {/* Committee Select */}
+          <CustomSelect onSelect={(val) => setFormData(prev => ({ ...prev, committee: val }))} />
+
+          {/* College Info */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <CollegeSelect onSelect={(val) => setFormData(prev => ({ ...prev, college: val }))} />
+            <input
+              name="college_id"
+              type="text"
+              placeholder="College ID"
+              onChange={handleChange}
+              value={formData.college_id}
+              required
+              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
+            />
+          </div>
 
           {/* Academic Year */}
           <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
-            <label className="text-md font-bold text-[#333] block">Academic Year</label>
+            <label className="text-md font-bold text-[#333] block text-left">Academic Year</label>
             <div className="flex flex-wrap gap-4">
               {[1, 2, 3, 4].map((year) => (
                 <label key={year} className="flex items-center gap-2 cursor-pointer text-gray-700 group">
@@ -147,28 +164,7 @@ const navigate = useNavigate();
             className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
           />
 
-          {/* College Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <select
-              name="college"
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 text-gray-700 transition-all duration-200 shadow-sm"
-            >
-              <option value="">Select College</option>
-              <option value="computer science">Computer Science</option>
-              <option value="other">Other</option>
-            </select>
-            <input
-              name="college_id"
-              type="text"
-              placeholder="College ID"
-              onChange={handleChange}
-              value={formData.college_id}
-              required
-              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
-            />
-          </div>
+
 
           <div className="pt-2">
             <button
