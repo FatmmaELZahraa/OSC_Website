@@ -143,7 +143,7 @@ const RecruitmentForm = () => {
           />
 
           {/* College Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <select
               name="college"
               onChange={handleChange}
@@ -163,7 +163,47 @@ const RecruitmentForm = () => {
               required
               className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
             />
-          </div>
+          </div> */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+  <div className="relative">
+    <select
+      name="college"
+      onChange={handleChange}
+      required
+      className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 text-gray-700 transition-all duration-200 shadow-sm appearance-none cursor-pointer"
+    >
+      <option value="">Select College</option>
+      <option value="computer science">Computer Science</option>
+      <option value="other">Other</option>
+    </select>
+    
+    {/* أيقونة السهم المخصصة لتطابق الصورة */}
+    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+      <svg
+        className="h-4 w-4 text-[#FA9B46]"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <input
+    name="college_id"
+    type="text"
+    placeholder="College ID"
+    onChange={handleChange}
+    value={formData.college_id}
+    required
+    className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
+  />
+</div>
 
           <div className="pt-2">
             <button
