@@ -4,16 +4,18 @@ const CollegeSelect = ({ onSelect }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState("");
 
-    const colleges = [
-        "Computer Science",
-        "Other"
-    ];
+    const colleges = {
+        "Colleges": [
+            { id: "cs", name: "Computer Science" },
+            { id: "other", name: "Other" }
+        ]
+    };
 
-    const handleSelect = (college) => {
-        setSelected(college);
+    const handleSelect = (name) => {
+        setSelected(name);
         setIsOpen(false);
         if (onSelect) {
-            onSelect(college);
+            onSelect(name);
         }
     };
 
@@ -41,13 +43,20 @@ const CollegeSelect = ({ onSelect }) => {
             {isOpen && (
                 <div className="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-md border-2 border-[#FA9B46]/20 rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
                     <div className="max-h-60 overflow-y-auto custom-scrollbar">
-                        {colleges.map((college, index) => (
-                            <div
-                                key={index}
-                                onClick={() => handleSelect(college)}
-                                className="px-5 py-2.5 hover:bg-[#FA9B46]/10 cursor-pointer text-gray-700 transition-colors duration-150 first:pt-3"
-                            >
-                                {college}
+                        {Object.entries(colleges).map(([group, items]) => (
+                            <div key={group}>
+                                <div className="px-5 py-2 text-xs font-bold text-[#FA9B46] bg-[#FFF8E7]/50 uppercase tracking-wider">
+                                    {group}
+                                </div>
+                                {items.map((item) => (
+                                    <div
+                                        key={item.id}
+                                        onClick={() => handleSelect(item.name)}
+                                        className="px-5 py-2.5 hover:bg-[#FA9B46]/10 cursor-pointer text-gray-700 transition-colors duration-150 first:pt-3"
+                                    >
+                                        {item.name}
+                                    </div>
+                                ))}
                             </div>
                         ))}
                     </div>
