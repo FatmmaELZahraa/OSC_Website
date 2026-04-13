@@ -11,7 +11,7 @@ const ALL_COMMITTEES = {
   ],
   Creative: [
     { id: "media", name: "Media" },
-    { id: "uiux", name: "UI/UX" },
+    { id: "ui/ux", name: "UI/UX" },
     { id: "blender", name: "Blender" },
   ],
   "Non-Technical": [
