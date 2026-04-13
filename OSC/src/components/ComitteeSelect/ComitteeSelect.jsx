@@ -7,10 +7,12 @@ const ALL_COMMITTEES = {
     { id: "science and tech", name: "Science and Tech" },
     { id: "linux", name: "Linux" },
     { id: "game development", name: "Game Development" },
-    { id: "uiux", name: "UI/UX" },
     { id: "flutter", name: "Flutter" },
-    { id: "blender", name: "Blender" },
+  ],
+  Creative: [
     { id: "media", name: "Media" },
+    { id: "uiux", name: "UI/UX" },
+    { id: "blender", name: "Blender" },
   ],
   "Non-Technical": [
     { id: "hr", name: "HR" },
