@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import CustomSelect from '../components/ComitteeSelect/ComitteeSelect';
-import CollegeSelect from '../components/CollegeSelect/CollegeSelect';
-
+import React, { useState } from "react";
+import CustomSelect from "../components/ComitteeSelect/ComitteeSelect";
+import CollegeSelect from "../components/CollegeSelect/CollegeSelect";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const RecruitmentForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const availableCommittees = location.state?.availableCommittees ?? [];
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    confirmEmail: '',
-    academic_year: '',
-    phone: '',
-    college: '',
-    college_id: '',
-    committee: '',
+    name: "",
+    email: "",
+    confirmEmail: "",
+    academic_year: "",
+    phone: "",
+    college: "",
+    college_id: "",
+    committee: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.email !== formData.confirmEmail) {
       alert("البريد الإلكتروني غير متطابق!");
       return;
@@ -31,19 +35,19 @@ const RecruitmentForm = () => {
     const dataToSend = {
       name: formData.name,
       email: formData.email,
-      academic_year: Number(formData.academic_year), 
+      academic_year: Number(formData.academic_year),
       phone: formData.phone,
-      college: formData.college.toLowerCase(), 
+      college: formData.college.toLowerCase(),
       college_id: formData.college_id,
-  committee: formData.committee.toLowerCase(),
+      committee: formData.committee.toLowerCase(),
     };
 
     try {
-      const response = await fetch('https://osc-recruit-form.vercel.app/form', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+      const response = await fetch("https://osc-recruit-form.vercel.app/form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(dataToSend),
       });
@@ -51,10 +55,10 @@ const RecruitmentForm = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Application submitted successfully!");
+        navigate("/Recruit", { replace: true });
       } else {
-        const errorMessage = Array.isArray(result.message) 
-          ? result.message.join("\n") 
+        const errorMessage = Array.isArray(result.message)
+          ? result.message.join("\n")
           : result.message;
         alert(`خطأ في البيانات:\n${errorMessage}`);
       }
@@ -71,11 +75,12 @@ const RecruitmentForm = () => {
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#333] tracking-tight">
             OSC <span className="text-[#F39148]">Recruitment</span>
           </h1>
-          <p className="text-gray-500 mt-1 font-medium text-sm">Join our community and build the future.</p>
+          <p className="text-gray-500 mt-1 font-medium text-sm">
+            Join our community and build the future.
+          </p>
         </header>
 
         <form className="space-y-3" onSubmit={handleSubmit}>
-          {/* Full Name */}
           <div className="group">
             <input
               name="name"
@@ -88,7 +93,6 @@ const RecruitmentForm = () => {
             />
           </div>
 
-          {/* Emails */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <input
               name="email"
@@ -110,16 +114,24 @@ const RecruitmentForm = () => {
             />
           </div>
 
-      <CustomSelect 
-      onSelect={(val) => setFormData(prev => ({ ...prev, committee: val }))} 
-    />
+          {/* Pass available committees to CustomSelect */}
+          <CustomSelect
+            options={availableCommittees}
+            onSelect={(val) =>
+              setFormData((prev) => ({ ...prev, committee: val }))
+            }
+          />
 
-          {/* Academic Year */}
-                <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
-            <label className="text-md font-bold text-[#333] block text-left">Academic Year</label>
+          <div className="p-4 rounded-2xl border-2 border-[#FA9B46]/30 bg-white/50 space-y-2 shadow-sm">
+            <label className="text-md font-bold text-[#333] block text-left">
+              Academic Year
+            </label>
             <div className="flex flex-wrap gap-4">
               {[1, 2, 3, 4].map((year) => (
-                <label key={year} className="flex items-center gap-2 cursor-pointer text-gray-700 group">
+                <label
+                  key={year}
+                  className="flex items-center gap-2 cursor-pointer text-gray-700 group"
+                >
                   <div className="relative flex items-center">
                     <input
                       type="radio"
@@ -131,13 +143,14 @@ const RecruitmentForm = () => {
                     />
                     <div className="absolute w-2 h-2 rounded-full bg-[#FA9B46] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
                   </div>
-                  <span className="text-sm font-medium group-hover:text-[#FA9B46] transition-colors">Year {year}</span>
+                  <span className="text-sm font-medium group-hover:text-[#FA9B46] transition-colors">
+                    Year {year}
+                  </span>
                 </label>
               ))}
             </div>
           </div>
 
-          {/* Phone */}
           <input
             name="phone"
             type="tel"
@@ -148,18 +161,12 @@ const RecruitmentForm = () => {
             className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
           />
 
-          {/* College Info */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <select
-              name="college"
-              onChange={handleChange}
-              required
-              className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 text-gray-700 transition-all duration-200 shadow-sm"
-            >
-              <option value="">Select College</option>
-              <option value="computer science">Computer Science</option>
-              <option value="other">Other</option>
-            </select>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <CollegeSelect
+              onSelect={(val) =>
+                setFormData((prev) => ({ ...prev, college: val }))
+              }
+            />
             <input
               name="college_id"
               type="text"
@@ -169,22 +176,7 @@ const RecruitmentForm = () => {
               required
               className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
             />
-          </div> */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-  <CollegeSelect 
-    onSelect={(val) => setFormData(prev => ({ ...prev, college: val }))} 
-  />
-
-  <input
-    name="college_id"
-    type="text"
-    placeholder="College ID"
-    onChange={handleChange}
-    value={formData.college_id}
-    required
-    className="w-full px-5 py-3 rounded-2xl border-2 border-[#FA9B46]/30 bg-white focus:border-[#FA9B46] focus:outline-none focus:ring-4 focus:ring-[#FA9B46]/10 placeholder:text-gray-400 text-gray-700 transition-all duration-200 shadow-sm"
-  />
-</div>
+          </div>
 
           <div className="pt-2">
             <button
