@@ -10,6 +10,7 @@ const ALL_COMMITTEES = {
     { id: "uiux", name: "UI/UX" },
     { id: "flutter", name: "Flutter" },
     { id: "blender", name: "Blender" },
+    { id: "media", name: "Media" },
   ],
   "Non-Technical": [
     { id: "hr", name: "HR" },
