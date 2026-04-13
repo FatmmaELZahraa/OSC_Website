@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import RecruitmentForm from "./pages/RecruitmentForm";
 import Events from "./pages/Events";
 import CommitteesGrid from "./pages/CommitteesGrid";
+import ClosedForm from "./pages/ClosedForm";
 
 
 
@@ -23,6 +24,8 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/committees/projects" element={<Projects />} />
         <Route path="/committees" element={<CommitteesGrid />} />
+        <Route path="/ClosedForm" element={<ClosedForm />} />
+
       
 
       </Routes>

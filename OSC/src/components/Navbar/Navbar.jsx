@@ -29,7 +29,7 @@ const Navbar = () =>
       <div className="flex flex-wrap md:flex-nowrap gap-3 md:gap-4 text-sm md:text-base">
         <Link to="/" className={linkStyle("/")}>Home</Link>
         <Link to="/playlists" className={linkStyle("/playlists")}>Playlists</Link>
-        <Link to="/recruit" className={linkStyle("/recruit")}>Recruit</Link>
+        <Link to="/ClosedForm" className={linkStyle("/ClosedForm")}>Recruit</Link>
         <Link to="/committees" className={linkStyle("/projects")}>Projects</Link>
         <Link to="/events" className={linkStyle("/events")}>Events</Link>
        
