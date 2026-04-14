@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
@@ -7,11 +8,19 @@ const Recruit = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [availableCommittees, setAvailableCommittees] = useState(
-    location.state?.availableCommittees ?? null, // null = still loading
+    location.state?.availableCommittees ?? null,
   );
 
+  const toastShown = useRef(false);
+
   useEffect(() => {
-    // Always re-fetch to get fresh data (e.g. after form submission)
+    if (location.state?.showSuccess && !toastShown.current) {
+      toastShown.current = true;
+      toast.success("تم التقديم بنجاح! 🎉", { duration: 4000 });
+    }
+  }, []);
+
+  useEffect(() => {
     fetch("https://osc-recruit-form.vercel.app/form/committees")
       .then((res) => res.json())
       .then((data) => {
@@ -19,13 +28,12 @@ const Recruit = () => {
         if (available.length === 0) {
           navigate("/ClosedForm", { replace: true });
         } else {
-          setAvailableCommittees(available); // just update state, no navigate
+          setAvailableCommittees(available);
         }
       })
       .catch(() => navigate("/ClosedForm", { replace: true }));
   }, []);
 
-  // Show nothing while fetching to avoid flicker
   if (availableCommittees === null) return null;
 
   return (

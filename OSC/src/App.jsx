@@ -9,13 +9,12 @@ import RecruitmentForm from "./pages/RecruitmentForm";
 import Events from "./pages/Events";
 import CommitteesGrid from "./pages/CommitteesGrid";
 import ClosedForm from "./pages/ClosedForm";
-
-
-
+import { Toaster } from "sonner";
 
 function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Recruit" element={<Recruit />} />
@@ -25,9 +24,6 @@ function App() {
         <Route path="/committees/projects" element={<Projects />} />
         <Route path="/committees" element={<CommitteesGrid />} />
         <Route path="/ClosedForm" element={<ClosedForm />} />
-
-      
-
       </Routes>
     </BrowserRouter>
   );

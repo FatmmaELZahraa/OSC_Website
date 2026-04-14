@@ -55,7 +55,7 @@ const RecruitmentForm = () => {
       const result = await response.json();
 
       if (response.ok) {
-        navigate("/Recruit", { replace: true });
+        navigate("/Recruit", { replace: true, state: { showSuccess: true } });
       } else {
         const errorMessage = Array.isArray(result.message)
           ? result.message.join("\n")
